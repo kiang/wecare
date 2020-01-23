@@ -58,15 +58,5 @@
         <?php
         echo $this->element('sql_dump');
         ?>
-        <script type="text/javascript">
-            //<![CDATA[
-            $(function() {
-                $('a.dialogControl').click(function() {
-                    dialogFull(this);
-                    return false;
-                });
-            });
-            //]]>
-        </script>
     </body>
 </html>
