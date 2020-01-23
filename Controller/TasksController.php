@@ -72,6 +72,7 @@ class TasksController extends AppController {
         $this->set('items', $items);
         $this->set('foreignId', $foreignId);
         $this->set('foreignModel', $foreignModel);
+        $this->set('point', $this->Task->Point->read(null, $foreignId));
     }
 
 

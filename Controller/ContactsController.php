@@ -72,6 +72,9 @@ class ContactsController extends AppController {
         $this->set('items', $items);
         $this->set('foreignId', $foreignId);
         $this->set('foreignModel', $foreignModel);
+        $task = $this->Contact->Task->read(null, $foreignId);
+        $this->set('task', $task);
+        $this->set('point', $this->Contact->Task->Point->read(null, $task['Task']['Point_id']));
     }
 
 

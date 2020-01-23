@@ -6,9 +6,11 @@ if (!isset($url)) {
 if (!empty($foreignId) && !empty($foreignModel)) {
     $url = array($foreignModel, $foreignId);
 }
+$this->Html->addCrumb('攤點', '/admin/points/index');
+$this->Html->addCrumb($point['Point']['title'] . '的班表');
 ?>
 <div id="TasksAdminIndex">
-    <h2><?php echo __('班表', true); ?></h2>
+    <h2><?php echo $this->Html->getCrumbs(' > '); ?></h2>
     <div class="btn-group">
         <?php echo $this->Html->link(__('Add', true), array_merge($url, array('action' => 'add')), array('class' => 'btn btn-default dialogControl')); ?>
     </div>

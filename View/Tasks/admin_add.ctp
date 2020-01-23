@@ -23,14 +23,14 @@
             ));
             echo $this->Form->input('Task.time_begin', array(
                 'type' => 'time',
-                'interval' => 10,
+                'interval' => 30,
                 'timeFormat' => 24,
                 'label' => '開始時間',
                 'div' => 'form-group',
             ));
             echo $this->Form->input('Task.time_end', array(
                 'type' => 'time',
-                'interval' => 10,
+                'interval' => 30,
                 'timeFormat' => 24,
                 'label' => '結束時間',
                 'div' => 'form-group',
