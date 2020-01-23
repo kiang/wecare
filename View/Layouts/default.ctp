@@ -26,8 +26,6 @@
                 <div class="btn-group">
                     <?php if ($this->Session->read('Auth.User.id')): ?>
                         <?php echo $this->Html->link('攤點', '/admin/points', array('class' => 'btn btn-default')); ?>
-                        <?php echo $this->Html->link('班表', '/admin/tasks', array('class' => 'btn btn-default')); ?>
-                        <?php echo $this->Html->link('聯絡人', '/admin/contacts', array('class' => 'btn btn-default')); ?>
                         <?php echo $this->Html->link('Members', '/admin/members', array('class' => 'btn btn-default')); ?>
                         <?php echo $this->Html->link('Groups', '/admin/groups', array('class' => 'btn btn-default')); ?>
                         <?php echo $this->Html->link('Logout', '/members/logout', array('class' => 'btn btn-default')); ?>

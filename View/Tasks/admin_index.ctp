@@ -75,6 +75,7 @@ if (!empty($foreignId) && !empty($foreignModel)) {
                     <td>
                         <div class="btn-group">
                                 <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Task']['id']), array('class' => 'btn btn-default dialogControl')); ?>
+                                <?php echo $this->Html->link('聯絡人', array('controller' => 'contacts', 'action' => 'index', 'Task', $item['Task']['id']), array('class' => 'btn btn-default')); ?>
                                 <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['Task']['id']), array('class' => 'btn btn-default dialogControl')); ?>
                                 <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['Task']['id']), array('class' => 'btn btn-default'), __('Delete the item, sure?', true)); ?>
                         </div>

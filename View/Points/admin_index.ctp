@@ -51,6 +51,7 @@ if (!isset($url)) {
                     <td>
                         <div class="btn-group">
                                 <?php echo $this->Html->link(__('View', true), array('action' => 'view', $item['Point']['id']), array('class' => 'btn btn-default dialogControl')); ?>
+                                <?php echo $this->Html->link('班表', array('controller' => 'tasks', 'action' => 'index', 'Point', $item['Point']['id']), array('class' => 'btn btn-default')); ?>
                                 <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $item['Point']['id']), array('class' => 'btn btn-default dialogControl')); ?>
                                 <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $item['Point']['id']), array('class' => 'btn btn-default'), __('Delete the item, sure?', true)); ?>
                         </div>

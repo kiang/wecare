@@ -99,9 +99,17 @@ class ContactsController extends AppController {
         }
         if (!empty($this->data)) {
             $this->Contact->create();
-            if ($this->Contact->save($this->data)) {
+            $dataToSave = $this->data;
+            if(!empty($foreignModel)) {
+                $dataToSave['Contact'][$foreignKeys[$foreignModel]] = $foreignId;
+            }
+            if ($this->Contact->save($dataToSave)) {
                 $this->Session->setFlash(__('The data has been saved', true));
-                $this->redirect(array('action'=>'index'));
+                if(!empty($foreignModel)) {
+                    $this->redirect(array('action'=>'index', $foreignModel, $foreignId));
+                } else {
+                    $this->redirect(array('action'=>'index'));
+                }
             } else {
                 $this->Session->setFlash(__('Something was wrong during saving, please try again', true));
             }
