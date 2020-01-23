@@ -116,23 +116,6 @@ class ContactsController extends AppController {
         }
         $this->set('foreignId', $foreignId);
         $this->set('foreignModel', $foreignModel);
-        
-        $belongsToModels = array(
-            'listTask' => array(
-                'label' => '班表',
-                'modelName' => 'Task',
-                'foreignKey' => 'Task_id',
-            ),
-        );
-
-        foreach($belongsToModels AS $key => $model) {
-            if($foreignModel == $model['modelName']) {
-                unset($belongsToModels[$key]);
-                continue;
-            }
-            $this->set($key, $this->Contact->{$model['modelName']}->find('list'));
-        }
-        $this->set('belongsToModels', $belongsToModels);
     }
 
 
@@ -142,28 +125,16 @@ class ContactsController extends AppController {
             $this->redirect($this->referer());
         }
         if (!empty($this->data)) {
+            $dbData = $this->Contact->read(null, $id);
             if ($this->Contact->save($this->data)) {
                 $this->Session->setFlash(__('The data has been saved', true));
-                $this->redirect(array('action'=>'index'));
+                $this->redirect(array('action'=>'index', 'Task', $dbData['Contact']['Task_id']));
             } else {
                 $this->Session->setFlash(__('Something was wrong during saving, please try again', true));
             }
         }
         $this->set('id', $id);
         $this->data = $this->Contact->read(null, $id);
-
-        $belongsToModels = array(
-            'listTask' => array(
-                'label' => '班表',
-                'modelName' => 'Task',
-                'foreignKey' => 'Task_id',
-            ),
-        );
-
-        foreach($belongsToModels AS $key => $model) {
-            $this->set($key, $this->Contact->{$model['modelName']}->find('list'));
-        }
-        $this->set('belongsToModels', $belongsToModels);
     }
 
     function admin_delete($id = null) {

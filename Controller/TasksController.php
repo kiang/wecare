@@ -103,6 +103,7 @@ class TasksController extends AppController {
             if(!empty($foreignModel)) {
                 $dataToSave['Task'][$foreignKeys[$foreignModel]] = $foreignId;
             }
+            $dataToSave['Task']['count_contacts'] = 0;
             if ($this->Task->save($dataToSave)) {
                 $this->Session->setFlash(__('The data has been saved', true));
                 if(!empty($foreignModel)) {
@@ -116,23 +117,6 @@ class TasksController extends AppController {
         }
         $this->set('foreignId', $foreignId);
         $this->set('foreignModel', $foreignModel);
-        
-        $belongsToModels = array(
-            'listPoint' => array(
-                'label' => '攤點',
-                'modelName' => 'Point',
-                'foreignKey' => 'Point_id',
-            ),
-        );
-
-        foreach($belongsToModels AS $key => $model) {
-            if($foreignModel == $model['modelName']) {
-                unset($belongsToModels[$key]);
-                continue;
-            }
-            $this->set($key, $this->Task->{$model['modelName']}->find('list'));
-        }
-        $this->set('belongsToModels', $belongsToModels);
     }
 
 
@@ -142,28 +126,16 @@ class TasksController extends AppController {
             $this->redirect($this->referer());
         }
         if (!empty($this->data)) {
+            $dbData = $this->Task->read(null, $id);
             if ($this->Task->save($this->data)) {
                 $this->Session->setFlash(__('The data has been saved', true));
-                $this->redirect(array('action'=>'index'));
+                $this->redirect(array('action'=>'index', 'Point', $dbData['Task']['Point_id']));
             } else {
                 $this->Session->setFlash(__('Something was wrong during saving, please try again', true));
             }
         }
         $this->set('id', $id);
         $this->data = $this->Task->read(null, $id);
-
-        $belongsToModels = array(
-            'listPoint' => array(
-                'label' => '攤點',
-                'modelName' => 'Point',
-                'foreignKey' => 'Point_id',
-            ),
-        );
-
-        foreach($belongsToModels AS $key => $model) {
-            $this->set($key, $this->Task->{$model['modelName']}->find('list'));
-        }
-        $this->set('belongsToModels', $belongsToModels);
     }
 
     function admin_delete($id = null) {

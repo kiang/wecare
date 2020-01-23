@@ -7,15 +7,6 @@
                 ?></legend>
             <?php
             echo $this->Form->input('Contact.id');
-            foreach ($belongsToModels AS $key => $model) {
-                echo $this->Form->input('Contact.' . $model['foreignKey'], array(
-                    'type' => 'select',
-                    'label' => $model['label'],
-                    'options' => $$key,
-                    'div' => 'form-group',
-                    'class' => 'form-control',
-                ));
-            }
             echo $this->Form->input('Contact.name', array(
                 'label' => '姓名/暱稱',
                 'div' => 'form-group',
