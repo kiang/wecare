@@ -6,7 +6,8 @@ if (!isset($url)) {
 <div id="PointsAdminIndex">
     <h2><?php echo __('攤點', true); ?></h2>
     <div class="btn-group">
-        <?php echo $this->Html->link(__('Add', true), array('action' => 'add'), array('class' => 'btn btn-default dialogControl')); ?>
+        <?php echo $this->Html->link('新增', array('action' => 'add'), array('class' => 'btn btn-default')); ?>
+        <?php echo $this->Html->link('批次新增', array('action' => 'mass_add'), array('class' => 'btn btn-default')); ?>
     </div>
     <div><?php
         echo $this->Paginator->counter(array(
